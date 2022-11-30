@@ -1,0 +1,28 @@
+version: "3.8"
+services:
+  os_node:
+    image: "opensearchproject/opensearch:latest"
+    ports:
+     - "9200:9200"
+    environment:
+      - "discovery.type=single-node"
+      - "DISABLE_SECURITY_PLUGIN=true"
+      - "DISABLE_SECURITYDASHBOARDS_PLUGIN=true"
+      - "OPENSEARCH_JAVA_OPTS=-Xms512m -Xmx512m"
+    volumes:
+      - osdata01:/usr/share/opensearch/data
+    networks:
+      - opensearch_local
+  os_dashboard:
+    image: "opensearch-dashboards-no-security"
+    ports:
+      - "5601:5601"
+    environment:
+      - "OPENSEARCH_HOSTS=[\"http://os_node:9200\"]"
+    networks:
+      - opensearch_local
+volumes:
+  osdata01:
+networks:
+  opensearch_local:
+    driver: bridge
