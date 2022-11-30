@@ -3,6 +3,8 @@ Creates and run an instance of opensearch and opensearch dashboard.
 This needs podman-compose to be installed.
 Visit https://github.com/containers/podman-compose to learn how to install this.
 
+Ofcourse this works just as well with docker and docker-compose.
+
 ## 1. Build a new dashboard
 This disables the security plugin and builds a new image
 tagged opensearch-dashboards-no-security.
